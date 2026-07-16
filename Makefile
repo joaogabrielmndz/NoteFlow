@@ -2,7 +2,7 @@
 # Automation
 # ================
 
-.PHONY: help up down build logs prune ps tinker art routes start reset clear_and_migrate seed migrate
+.PHONY: help up down build logs prune ps tinker art routes run_tests start reset clear_and_migrate seed migrate
 
 SAIL := ./vendor/bin/sail 
 
@@ -25,6 +25,7 @@ help:
 	@echo "  make tinker           - Abre o terminal interativo do Laravel (Tinker)"
 	@echo "  make art c=           - Roda qualquer comando Artisan livre (ex: make art c=\"route:list\")"
 	@echo "  make routes           - Mostra todas as rotas criadas do projeto"
+	@echo "  make run_tests        - Roda todos os testes criados"
 	@echo "---------------------------------------------------------"
 	@echo "[BASE DE DADOS]"
 	@echo "  make migrate          - Roda as migrações pendentes"
@@ -68,6 +69,9 @@ art:
 
 routes:
 	$(SAIL) artisan route:list
+
+run_tests:
+	$(SAIL) artisan test
 
 # ====================================
 # Artisan BD
