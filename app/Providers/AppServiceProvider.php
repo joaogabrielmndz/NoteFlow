@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
-use App\Services\WeatherService;
+use App\Strategies\Weather\Api\OpenMeteoStrategy;
+use App\Strategies\Weather\ApiWeatherContext;
+use App\Strategies\Weather\Contracts\ApiWeatherStrategyInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -12,12 +14,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(WeatherService::class, function ($app) {
-            return new WeatherService(
-                api_key: config('services.openweather.key'),
-                city: config('services.openweather.city'),
-                lang: config('services.openweather.lang')
+        $this->app->bind('api_meteo', function ($app) {
+            return new OpenMeteoStrategy(
+                city: 'Porto Alegre', // variaveis predefinidas (temporario)
+                lang: 'pt'
             );
+        });
+
+        $this->app->bind(ApiWeatherContext::class, function ($app) {
+            return new ApiWeatherContext($app->make('api_meteo'));
         });
     }
 
