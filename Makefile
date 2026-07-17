@@ -2,7 +2,7 @@
 # Automation
 # ================
 
-.PHONY: help up down build logs prune ps tinker art routes run_tests start reset clear_and_migrate seed migrate
+.PHONY: help setup up down build logs prune ps tinker art routes run_tests start reset clear_and_migrate seed migrate
 
 SAIL := ./vendor/bin/sail 
 
@@ -14,6 +14,7 @@ help:
 	@echo "Guia de comandos do Projeto:"
 	@echo "---------------------------------------------------------"
 	@echo "[DOCKER]"
+	@echo "  make setup            - Realiza a configuração do ambiente do projeto"
 	@echo "  make up               - Inicia os contentores do Docker em background (-d)"
 	@echo "  make down             - Para e remove os contentores do projeto"
 	@echo "  make build            - Reconstrói as imagens do Docker do zero (sem usar cache)"
@@ -38,6 +39,21 @@ help:
 # ====================================
 # Sail commands
 # ====================================
+
+setup:
+	@echo "A instalar dependências do Composer via Docker..."
+	docker run --rm -u "$(shell id -u):$(shell id -g)" -v "$(shell pwd):/var/www/html" -w /var/www/html composer:latest composer install --ignore-platform-reqs
+	@echo "A configurar o arquivo .env..."
+	cp .env.example .env
+	@echo "A subir os contentores do Sail..."
+	$(SAIL) up -d
+	@echo "A aguardar a inicialização da base de dados..."
+	@sleep 5
+	@echo "A gerar chave da aplicação..."
+	$(SAIL) artisan key:generate
+	@echo "A executar migrações e popular a base de dados..."
+	$(SAIL) artisan migrate --seed
+	@echo "Instalação concluída com sucesso! Pode aceder ao projeto."
 
 up: 
 	$(SAIL) up -d 
