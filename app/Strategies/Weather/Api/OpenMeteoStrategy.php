@@ -51,7 +51,7 @@ class OpenMeteoStrategy implements ApiWeatherStrategyInterface
         $response = Http::get('https://api.open-meteo.com/v1/forecast', [
             'latitude' => $coords['latitude'],
             'longitude' => $coords['longitude'],
-            'current' => 'weather_code, temperature_2m',
+            'current' => 'weather_code,temperature_2m',
             'timezone' => $coords['timezone'],
             'forecast_days' => 1 // (today)
         ]);
@@ -59,8 +59,8 @@ class OpenMeteoStrategy implements ApiWeatherStrategyInterface
         if ($response->successful()) 
             return [
                 'current' => [
-                    'temperature_min' => (float) ceil($response->json('current.temperature_2m.0')),
-                    'weather_code' => $response->json('current.weather_code.0'),
+                    'temperature' => (float) ceil($response->json('current.temperature_2m')),
+                    'weather_code' => $response->json('current.weather_code'),
                 ],
             ];
 
