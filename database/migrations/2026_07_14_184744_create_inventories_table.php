@@ -13,11 +13,7 @@ return new class extends Migration
     {
         Schema::create('inventories', function (Blueprint $table) {
             $table->id();
-            $table->integer('bottle_size_ml');
-            $table->integer('remaining_ml');
-            $table->string('batch_code')->nullable();
-            $table->date('acquisition_time')->nullable();
-            $table->string('status');
+            $table->string('status')->default('In use'); // In use, Finished, Archived
             $table->timestamps();
             $table->softDeletes();
 

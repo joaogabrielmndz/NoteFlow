@@ -24,11 +24,7 @@ class InventoryFactory extends Factory
         return [
             'user_id' => User::inRandomOrder()->value('id') ?? User::factory(),
             'perfume_id' => Perfume::inRandomOrder()->value('id') ?? Perfume::factory(),
-            'bottle_size_ml' => $bottleSize,
-            'remaining_ml' => $this->faker->numberBetween(0, $bottleSize),
-            'batch_code' => $this->faker->lexify('??') . $this->faker->numerify('#####'),
-            'acquisition_time' => $this->faker->dateTimeThisDecade(),
-            'status' => $this->faker->randomElement(['In use', 'Archived'])
+            'status' => $this->faker->randomElement(['In use', 'Finished', 'Archived'])
         ];
     }
 }
