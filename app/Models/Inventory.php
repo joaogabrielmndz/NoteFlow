@@ -9,14 +9,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Override;
 
-#[Fillable(['user_id', 'perfume_id', 'bottle_size_ml', 'remaining_ml', 'batch_code', 'acquisition_time', 'status'])]
+#[Fillable(['user_id', 'perfume_id', 'status'])]
 class Inventory extends Model
 {
     /** @use HasFactory<\Database\Factories\InventoryFactory> */
     use HasFactory,
     /** @use Illuminate\Database\Eloquent\SoftDeletes */
     SoftDeletes;
-    
+
     /** Get the user from a inventory */
     public function user(): BelongsTo
     {
