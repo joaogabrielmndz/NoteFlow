@@ -9,7 +9,7 @@
 Este projeto utiliza Laravel Sail (Docker) para garantir um ambiente padronizado. Não é necessário ter o PHP ou Base de Dados instalados na sua máquina, apenas o Docker e o utilitário make.
 
 - 🐋 **Docker:** (seja Desktop no Windows, ou Engine em ambientes Unix-like, como Linux e Mac)
-- ⚙️ **make:** Utilitário do ``make`` para automatização de tarefas com o arquivo ``Makefile`` que se encontra na raiz do projeto
+- ⚙️ **make:** Utilitário do ``just`` para automatização de tarefas com o arquivo ``justfile`` que se encontra na raiz do projeto
 
 ## Instalação
 Clonar o repositorio 
@@ -19,7 +19,7 @@ cd noteflow
 ```
 
 ## Inicialização 
-Rode o comando ``make setup`` para inicializar todo o setup do projeto
+Rode o comando ``just setup`` para inicializar todo o setup do projeto
 ```bash
 make setup
 ```
