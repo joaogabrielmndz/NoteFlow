@@ -61,10 +61,6 @@ build:
 logs:
     {{sail}} logs -f
 
-# Limpa contêineres, redes e volumes parados/não utilizados
-prune:
-    {{sail}} prune
-
 # Lista o status atual dos contêineres
 ps:
     {{sail}} ps
