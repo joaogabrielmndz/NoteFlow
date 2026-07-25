@@ -28,15 +28,4 @@ class Inventory extends Model
     {
         return $this->belongsTo(Perfume::class);
     }
-
-    #[Override]
-    public static function booted(): void
-    {
-        static::saving(function (Inventory $inventory) {
-            if ($inventory->remaining_ml <= 0) {
-                $inventory->remaining_ml = 0;
-                $inventory->status = 'Finished';
-            }
-        });
-    }
 }
