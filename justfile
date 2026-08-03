@@ -85,6 +85,13 @@ routes:
 run_tests:
     {{sail}} artisan test
 
+cclear:
+    @echo "Limpando cache, configuração, rotas e views..."
+    {{sail}} artisan cache:clear
+    {{sail}} artisan config:clear
+    {{sail}} artisan route:clear
+    {{sail}} artisan view:clear
+
 # ====================================
 # BANCO DE DADOS
 # ====================================
