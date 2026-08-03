@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\EnumTypes\PerfumeStatus;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,6 +17,14 @@ class Inventory extends Model
     use HasFactory,
     /** @use Illuminate\Database\Eloquent\SoftDeletes */
     SoftDeletes;
+
+    #[Override]
+    protected function casts()
+    {
+        return [
+            'status' => PerfumeStatus::class
+        ];
+    }
 
     /** Get the user from a inventory */
     public function user(): BelongsTo

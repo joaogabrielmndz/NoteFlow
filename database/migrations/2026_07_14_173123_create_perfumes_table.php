@@ -16,8 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('brand');
             $table->string('concentration');
-            $table->string('gender_target');
-            $table->integer('release_year')->nullable();
             $table->string('image_url')->nullable();
             $table->timestamps();
             $table->softDeletes();

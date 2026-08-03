@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\EnumTypes\PerfumeConcentration;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,9 +20,7 @@ class PerfumeFactory extends Factory
         return [
             'name' => $this->faker->words(asText: true),
             'brand' => 'demo',
-            'concentration' => $this->faker->randomElement(['EDP', 'EDT', 'Parfum']),
-            'gender_target' =>  $this->faker->randomElement(['Masculine', 'Female']),
-            'release_year' => $this->faker->numberBetween(1990, now()->year)
+            'concentration' => $this->faker->randomElement(PerfumeConcentration::cases())
         ];
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-#[Fillable(['name', 'olfactory_family'])]
+#[Fillable(['name'])]
 class Note extends Model
 {
     /** @use HasFactory<\Database\Factories\NoteFactory> */

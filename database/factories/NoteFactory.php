@@ -19,9 +19,6 @@ class NoteFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->word(),
-            'olfactory_family' => $this->faker->randomElement([
-                'Citrus', 'Woody', 'Floral', 'Oriental', 'Fougere', 'Chypre', 'Gourmand'
-            ]),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\EnumTypes\PerfumeStatus;
 use App\Models\Inventory;
 use App\Models\Perfume;
 use App\Models\User;
@@ -19,12 +20,10 @@ class InventoryFactory extends Factory
      */
     public function definition(): array
     {
-        $bottleSize = $this->faker->randomElement([50, 100, 200, 300]);
-
         return [
             'user_id' => User::inRandomOrder()->value('id') ?? User::factory(),
             'perfume_id' => Perfume::inRandomOrder()->value('id') ?? Perfume::factory(),
-            'status' => $this->faker->randomElement(['In use', 'Finished', 'Archived'])
+            'status' => $this->faker->randomElement(PerfumeStatus::cases())
         ];
     }
 }
